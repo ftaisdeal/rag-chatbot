@@ -29,6 +29,18 @@ cp .env.example .env
 
 Edit `.env` and set `OPENAI_API_KEY`.
 
+If you want endpoint protection enabled, generate an app key and set `APP_API_KEY` in `.env`:
+
+```bash
+openssl rand -base64 32
+```
+
+Then copy that value into:
+
+```dotenv
+APP_API_KEY=YOUR_GENERATED_VALUE
+```
+
 Optional but recommended for any internet-facing deployment:
 
 - `APP_API_KEY`: shared API key required for `/chat`, `/ingest`, and `/documents*`.
@@ -54,6 +66,16 @@ python3 -m uvicorn app.main:app --reload
 Open http://127.0.0.1:8000 in your browser.
 
 If `APP_API_KEY` is set, enter it in the in-page **App API key** field and click **Save key**. The key panel hides after a successful authenticated request and reappears if the server returns `401`.
+
+## Security before publishing
+
+Before pushing this project to GitHub:
+
+- Keep `.env` out of version control (it contains real secrets).
+- Commit only `.env.example` with placeholder values.
+- Confirm `.gitignore` includes `.env` and `.env.*` plus `!.env.example`.
+- Rotate any API keys that were ever shared, pasted in chats, or committed by mistake.
+- If a secret was committed, remove it from git history and rotate it immediately.
 
 ## Rebuild the index
 
