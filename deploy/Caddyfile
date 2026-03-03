@@ -1,0 +1,16 @@
+# Replace example.com with your real domain.
+# Caddy auto-manages HTTPS certificates.
+example.com {
+    encode gzip zstd
+
+    # Keep edge upload limit aligned with MAX_UPLOAD_MB in .env
+    request_body {
+        max_size 2MB
+    }
+
+    reverse_proxy 127.0.0.1:8000 {
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+        header_up X-Forwarded-Host {host}
+    }
+}
