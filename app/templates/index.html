@@ -1,76 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RAG Chatbot</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/static/styles.css?v=1" />
-  </head>
-  <body>
-    <main class="page">
-      <header class="hero">
-        <div class="hero__badge">Planet A</div>
-        <h1>Ask your docs anything.</h1>
-        <p>
-          This chatbot retrieves context from your local files and answers with sources.
-        </p>
-      </header>
 
-      <section class="panel">
-        <form id="chat-form" class="chat">
-          <div id="api-key-panel" class="api-key-panel">
-            <label class="api-key-panel__label" for="api-key">App API key</label>
-            <input
-              id="api-key"
-              type="password"
-              autocomplete="off"
-              placeholder="Enter API key"
-            />
-            <button type="button" id="save-api-key">Save key</button>
-            <button type="button" id="clear-api-key">Clear key</button>
-            <span id="api-key-status" class="api-key-status" aria-live="polite"></span>
-          </div>
-          <label class="chat__label" for="question">Your question</label>
-          <textarea
-            id="question"
-            name="question"
-            rows="3"
-            placeholder="What does the document say about ..."
-          ></textarea>
-          <div class="chat__actions">
-            <button type="submit">Ask</button>
-            <button type="button" id="manage-docs">Manage docs</button>
-            <div class="ingest-group">
-              <button type="button" id="ingest">Rebuild index</button>
-              <span id="ingest-status" class="ingest-status" aria-live="polite"></span>
-            </div>
-          </div>
-          <div id="ask-status" class="ask-status" aria-live="polite"></div>
-          <div id="docs-panel" class="docs-panel docs-panel--hidden">
-            <div class="docs-panel__header">Documents</div>
-            <ul id="docs-list" class="docs-list"></ul>
-            <div class="docs-upload">
-              <input id="docs-file" type="file" accept=".txt,.md,.pdf" />
-              <button type="button" id="upload-doc">Upload document</button>
-              <span id="docs-status" class="docs-status" aria-live="polite"></span>
-            </div>
-          </div>
-        </form>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAG Chatbot</title>
+  <link rel="stylesheet" href="/static/styles.css?v=1" />
+</head>
 
-        <div class="response response--idle" id="response">
-          <div class="response__header">Answer</div>
-          <div class="response__body" id="answer">Waiting for a question...</div>
-          <div class="response__sources" id="sources"></div>
-          <div class="response__debug" id="debug"></div>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="hero__badge">Planet A</div>
+      <h1>Ask your docs anything.</h1>
+      <p>
+        This chatbot retrieves context from your local files and answers with sources.
+      </p>
+    </header>
+
+    <section class="panel">
+      <form id="chat-form" class="chat">
+        <div id="api-key-panel" class="api-key-panel">
+          <label class="api-key-panel__label" for="api-key">App API key</label>
+          <input id="api-key" type="password" autocomplete="off" placeholder="Enter API key" />
+          <button type="button" id="save-api-key">Save key</button>
+          <button type="button" id="clear-api-key">Clear key</button>
+          <span id="api-key-status" class="api-key-status" aria-live="polite"></span>
         </div>
-      </section>
-    </main>
-    <script src="/static/app.js?v=4"></script>
-  </body>
+        <label class="chat__label" for="question">Your question</label>
+        <textarea id="question" name="question" rows="3" placeholder="What does the document say about ..."></textarea>
+        <div class="chat__actions">
+          <button type="submit">Ask</button>
+          <button type="button" id="manage-docs">Manage docs</button>
+          <div class="ingest-group">
+            <button type="button" id="ingest">Rebuild index</button>
+            <span id="ingest-status" class="ingest-status" aria-live="polite"></span>
+          </div>
+        </div>
+        <div id="ask-status" class="ask-status" aria-live="polite"></div>
+        <div id="docs-panel" class="docs-panel docs-panel--hidden">
+          <div class="docs-panel__header">Documents</div>
+          <ul id="docs-list" class="docs-list"></ul>
+          <div class="docs-upload">
+            <input id="docs-file" type="file" accept=".txt,.md,.pdf" />
+            <button type="button" id="upload-doc">Upload document</button>
+            <span id="docs-status" class="docs-status" aria-live="polite"></span>
+          </div>
+        </div>
+      </form>
+
+      <div class="response response--idle" id="response">
+        <div class="response__header">Answer</div>
+        <div class="response__body" id="answer">Waiting for a question...</div>
+        <div class="response__sources" id="sources"></div>
+        <div class="response__debug" id="debug"></div>
+      </div>
+    </section>
+  </main>
+  <script src="/static/app.js?v=4"></script>
+</body>
+
 </html>
