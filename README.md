@@ -1,6 +1,6 @@
 # RAG Chatbot
 
-A simple RAG chatbot with a FastAPI backend and a minimal web UI.
+A RAG chatbot with a FastAPI/Chroma backend and elegant web UI.
 
 ## First deploy quick checklist
 
