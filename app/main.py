@@ -10,9 +10,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from dotenv import load_dotenv
 
-from app.rag import CHROMA_DIR, DATA_DIR, RagService
-
 load_dotenv()
+
+from app.rag import CHROMA_DIR, DATA_DIR, RagService
 
 app = FastAPI(title="RAG Chatbot")
 app.mount("/static", StaticFiles(directory="app/static"), name="static")

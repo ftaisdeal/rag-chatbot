@@ -4,6 +4,9 @@ import shutil
 import re
 from threading import Lock
 
+# Avoid tokenizer worker process noise/leaks in local dev when env is unset.
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+
 import chromadb
 from chromadb.config import Settings
 
